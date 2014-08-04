@@ -29,7 +29,7 @@ class InPort extends BasePort
 
     do @prepareBuffer
 
-  attachSocket: (socket, localId = null) ->
+  attachSocket: (socket, localId = null, metadata) ->
 
     # Assign a delegate for retrieving data should this inPort
     # have a default value.
@@ -37,16 +37,16 @@ class InPort extends BasePort
       socket.setDataDelegate => @options.default
 
     socket.on 'connect', =>
-      @handleSocketEvent 'connect', socket, localId, @metadata
+      @handleSocketEvent 'connect', socket, localId, metadata
     socket.on 'begingroup', (group) =>
-      @handleSocketEvent 'begingroup', group, localId, @metadata
+      @handleSocketEvent 'begingroup', group, localId, metadata
     socket.on 'data', (data) =>
       @validateData data
-      @handleSocketEvent 'data', data, localId, @metadata
+      @handleSocketEvent 'data', data, localId, metadata
     socket.on 'endgroup', (group) =>
-      @handleSocketEvent 'endgroup', group, localId, @metadata
+      @handleSocketEvent 'endgroup', group, localId, metadata
     socket.on 'disconnect', =>
-      @handleSocketEvent 'disconnect', socket, localId, @metadata
+      @handleSocketEvent 'disconnect', socket, localId, metadata
 
   handleSocketEvent: (event, payload, id) ->
     # Handle buffering

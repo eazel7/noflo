@@ -29,21 +29,21 @@ class Port extends EventEmitter
     @sockets.push socket
     @attachSocket socket
 
-  attachSocket: (socket, localId = null) ->
-    @emit "attach", socket, localId, @metadata
+  attachSocket: (socket, localId = null, metadata) ->
+    @emit "attach", socket, localId, metadata
 
     @from = socket.from
     socket.setMaxListeners 0 if socket.setMaxListeners
     socket.on "connect", =>
-      @emit "connect", socket, localId, @metadata
+      @emit "connect", socket, localId, metadata
     socket.on "begingroup", (group) =>
-      @emit "begingroup", group, localId, @metadata
+      @emit "begingroup", group, localId, metadata
     socket.on "data", (data) =>
-      @emit "data", data, localId, @metadata
+      @emit "data", data, localId, metadata
     socket.on "endgroup", (group) =>
-      @emit "endgroup", group, localId, @metadata
+      @emit "endgroup", group, localId, metadata
     socket.on "disconnect", =>
-      @emit "disconnect", socket, localId, @metadata
+      @emit "disconnect", socket, localId, metadata
 
   connect: ->
     if @sockets.length is 0

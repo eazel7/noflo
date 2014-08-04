@@ -11,7 +11,7 @@ class OutPort extends BasePort
     super options
 
   attach: (socket, index = null) ->
-    super socket, index, @metadata
+    super socket, index, metadata
     
     if @isCaching() and @cache[index]?
       @send @cache[index], index, @metadata

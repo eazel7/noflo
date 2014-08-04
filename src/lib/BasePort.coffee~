@@ -49,7 +49,7 @@ class BasePort extends EventEmitter
   getDataType: -> @options.datatype
   getDescription: -> @options.description
 
-  attach: (socket, index = null) ->
+  attach: (socket, index = null, metadata) ->
     if not @isAddressable() or index is null
       index = @sockets.length
     @sockets[index] = socket

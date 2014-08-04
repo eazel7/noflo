@@ -223,7 +223,7 @@ class Network extends EventEmitter
       obj = {}
       
       err = Error.captureStackTrace {}, getStackTrace
-      
+      )
       return obj.stack
 
     console.log getStackTrace()
